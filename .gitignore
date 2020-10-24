@@ -1,0 +1,6 @@
+.idea
+.DS_Store
+composer
+demo/index.php
+clover.xml
+vendor

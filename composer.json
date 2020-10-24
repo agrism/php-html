@@ -1,0 +1,24 @@
+{
+  "name": "agrism/php-html",
+  "description": "A Simple HTML Library for PHP",
+  "type": "library",
+  "license": "MIT",
+  "keywords": ["html", "php", "builder"],
+  "authors": [
+    {
+      "name": "Agris",
+      "email": "7924@inbox.lv"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Agrism\\PhpHtml\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^7.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.5"
+  }
+}

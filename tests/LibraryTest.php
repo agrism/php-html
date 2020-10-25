@@ -15,7 +15,7 @@ class LibraryTest extends TestCase
 			->setAttribute(new Attribute('name', '123'))
 			->setSelfClosing(false)
 			->setContent(
-				Element::factory()
+				Element::factory('ppp')
 					->setTagName('p')
 					->setContent(
 						Element::factory('i')

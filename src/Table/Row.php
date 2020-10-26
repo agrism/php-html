@@ -28,7 +28,10 @@ class Row
 		return $this;
 	}
 
-
+	/**
+	 * @param  Attribute  $attribute
+	 * @return $this
+	 */
 	public function addAttribute(Attribute $attribute): self
 	{
 		$this->attributes[] = $attribute;

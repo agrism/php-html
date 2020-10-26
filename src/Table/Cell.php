@@ -33,6 +33,7 @@ class Cell
 		return $this->content;
 	}
 
+	/*** @return $this */
 	public function setCellTypeToHead(): self
 	{
 		$this->cellType = 'th';

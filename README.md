@@ -1,4 +1,4 @@
-# php-html
+# php-html library
 
 
 [![Build Status](https://travis-ci.com/agrism/php-html.svg?branch=master)](https://travis-ci.com/agrism/php-html)

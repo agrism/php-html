@@ -7,7 +7,7 @@
 [![License](https://poser.pugx.org/agrism/php-html/license.svg)](https://packagist.org/packages/agrism/php-html)
 
 
-## Usage:
+### Usage:
 
 ```php
 <?php
@@ -29,4 +29,57 @@ Table::factory()
 
 ```
 
-<table border="13"><tbody><tr style="background-color:yellowgreen;"><td>p1</td><td>p2</td><td>p3</td></tr></tbody><tbody><tr style="background-color:yellowgreen;"><td>p11</td><td>p22</td><td>p33</td></tr></tbody><thead><tr border="1" style="background-color:brown;"><th>title1</th><th>title2</th><th>title3</th></tr></thead><thead><tr border="1" style="background-color:blue;"><th>title11</th><th>title22</th><th>title33</th></tr></thead><tbody><tr style="background-color:red;"><td>a</td><td>b</td><td>c</td></tr></tbody><tbody><tr style="background-color:yellow;font-size:28px;color:blue;text-align:right"><td>a1</td><td>b1</td><td>c1</td></tr></tbody><tbody><tr><td>a2</td><td>b2</td><td>c2</td></tr></tbody></table>
+### Result:
+```html
+<table border="13">
+    <tbody>
+        <tr style="background-color:yellowgreen;">
+            <td>p1</td>
+            <td>p2</td>
+            <td>p3</td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr style="background-color:yellowgreen;">
+            <td>p11</td>
+            <td>p22</td>
+            <td>p33</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr border="1" style="background-color:brown;">
+            <th>title1</th>
+            <th>title2</th>
+            <th>title3</th>
+        </tr>
+    </thead>
+    <thead>
+        <tr border="1" style="background-color:blue;">
+            <th>title11</th>
+            <th>title22</th>
+            <th>title33</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="background-color:red;">
+            <td>a</td>
+            <td>b</td>
+            <td>c</td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr style="background-color:yellow;font-size:28px;color:blue;text-align:right">
+            <td>a1</td>
+            <td>b1</td>
+            <td>c1</td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td>a2</td>
+            <td>b2</td>
+            <td>c2</td>
+        </tr>
+    </tbody>
+</table>
+```

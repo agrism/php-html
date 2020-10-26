@@ -38,8 +38,8 @@ $table = Element::factory('table')
           ->addContent(
             Element::factory()
                 ->addValue('A')
-                    ->addValue('B')
-                    ->addValue('C')
+                ->addValue('B')
+                ->addValue('C')
           )
           ->addContent(
             Element::factory('table')
@@ -49,16 +49,16 @@ $table = Element::factory('table')
                 Element::factory('tr')
                  ->addContent(
                    Element::factory('td')
-                    ->addContent(
-                      Element::factory()->addValue(5)
-                    )
+                     ->addContent(
+                       Element::factory()->addValue(5)
+                     )
                  )
                  ->addContent(
                    Element::factory('td')
-                    ->addAttribute(Attribute::factory('style', 'background-color:blue;'))
-                    ->addContent(
+                     ->addAttribute(Attribute::factory('style', 'background-color:blue;'))
+                     ->addContent(
                       Element::factory()->addValue(15)
-                    )
+                     )
                  )
               )
           )

@@ -37,9 +37,9 @@ $table = Element::factory('table')
         Element::factory('td')
           ->addContent(
             Element::factory()
-                ->addValue('A')
-                ->addValue('B')
-                ->addValue('C')
+              ->addValue('A')
+              ->addValue('B')
+              ->addValue('C')
           )
           ->addContent(
             Element::factory('table')

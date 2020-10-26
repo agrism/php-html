@@ -17,46 +17,46 @@ use Agrism\PhpHtml\Builder\Attribute;
 use Agrism\PhpHtml\Builder\Element;
 
 $table = Element::factory('table')
-	->addAttribute(Attribute::factory('border')->setValue(1))
-	->addContent(
-		Element::factory('tr')->addContent(
-			Element::factory('td')
-				->addContent(
-					Element::factory()
-						->addValue('A')
-						->addValue('B')
-						->addValue('C')
-				)
-				->addContent(
-					Element::factory('table')
-						->addAttribute(Attribute::factory('border', 3))
-						->addAttribute(Attribute::factory('style', 'background-color:red;'))
-						->addContent(
-							Element::factory('tr')
-								->addContent(
-									Element::factory('td')
-										->addContent(
-											Element::factory()->addValue(5)
-										)
-								)
-								->addContent(
-									Element::factory('td')
-										->addAttribute(Attribute::factory('style', 'background-color:blue;'))
-										->addContent(
-											Element::factory()->addValue(15)
-										)
-								)
-						)
-				)
-		)
-	);
+  ->addAttribute(Attribute::factory('border')->setValue(1))
+  ->addContent(
+    Element::factory('tr')->addContent(
+        Element::factory('td')
+          ->addContent(
+            Element::factory()
+                ->addValue('A')
+                    ->addValue('B')
+                    ->addValue('C')
+          )
+          ->addContent(
+            Element::factory('table')
+              ->addAttribute(Attribute::factory('border', 3))
+              ->addAttribute(Attribute::factory('style', 'background-color:red;'))
+              ->addContent(
+                Element::factory('tr')
+                 ->addContent(
+                   Element::factory('td')
+                    ->addContent(
+                      Element::factory()->addValue(5)
+                    )
+                 )
+                 ->addContent(
+                   Element::factory('td')
+                    ->addAttribute(Attribute::factory('style', 'background-color:blue;'))
+                    ->addContent(
+                      Element::factory()->addValue(15)
+                    )
+                 )
+              )
+          )
+       )
+);
 
 Element::factory('html')
-	->addContent($table)
-	->addContent($table)
-	->setEchoValue()
-	->render()
-	->doNothing();
+  ->addContent($table)
+  ->addContent($table)
+  ->setEchoValue()
+  ->render()
+  ->doNothing();
 ```
 #### Result:
 ```html
@@ -96,17 +96,19 @@ Element::factory('html')
 use Agrism\PhpHtml\Table\Table;
 
 Table::factory()
-	->addAttribute('border', 13)
-	->addRows([
-		['p1', 'p2', 'p3'],
-		['p11', 'p22', 'p33'],
-	], ['style' => 'background-color:yellowgreen;'])
-	->addHead(['title1', 'title2', 'title3'], ['border' => 1, 'style' => 'background-color:brown;'])
-	->addHead(['title11', 'title22', 'title33'], ['border' => 1, 'style' => 'background-color:blue;'])
-	->addRow(['a', 'b', 'c'], ['style' => 'background-color:red;'])
-	->addRow(['a1', 'b1', 'c1'], ['style' => 'background-color:yellow;font-size:28px;color:blue;text-align:right'])
-	->addRow(['a2', 'b2', 'c2'])
-	->render();
+  ->addAttribute('border', 13)
+  ->addRows([
+      ['p1', 'p2', 'p3'],
+      ['p11', 'p22', 'p33'],
+    ], 
+    ['style' => 'background-color:yellowgreen;']
+  )
+  ->addHead(['title1', 'title2', 'title3'], ['border' => 1, 'style' => 'background-color:brown;'])
+  ->addHead(['title11', 'title22', 'title33'], ['border' => 1, 'style' => 'background-color:blue;'])
+  ->addRow(['a', 'b', 'c'], ['style' => 'background-color:red;'])
+  ->addRow(['a1', 'b1', 'c1'], ['style' => 'background-color:yellow;font-size:28px;color:blue;text-align:right'])
+  ->addRow(['a2', 'b2', 'c2'])
+  ->render();     
 
 ```
 

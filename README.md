@@ -9,6 +9,80 @@
 
 ### Usage:
 
+#### Example 1
+```php
+<?php
+
+use Agrism\PhpHtml\Builder\Attribute;
+use Agrism\PhpHtml\Builder\Element;
+
+$table = Element::factory('table')
+	->addAttribute(Attribute::factory('border')->setValue(1))
+	->addContent(
+		Element::factory('tr')->addContent(
+			Element::factory('td')
+				->addContent(
+					Element::factory()
+						->addValue('A')
+						->addValue('B')
+						->addValue('C')
+				)
+				->addContent(
+					Element::factory('table')
+						->addAttribute(Attribute::factory('border', 3))
+						->addAttribute(Attribute::factory('style', 'background-color:red;'))
+						->addContent(
+							Element::factory('tr')
+								->addContent(
+									Element::factory('td')
+										->addContent(
+											Element::factory()->addValue(5)
+										)
+								)
+								->addContent(
+									Element::factory('td')
+										->addAttribute(Attribute::factory('style', 'background-color:blue;'))
+										->addContent(
+											Element::factory()->addValue(15)
+										)
+								)
+						)
+				)
+		)
+	);
+```
+#### Result:
+```html
+<html>
+    <table border="1">
+        <tr>
+            <td>ABC
+                <table border="3" style="background-color:red;">
+                    <tr>
+                        <td>5</td>
+                        <td style="background-color:blue;">15</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table border="1">
+        <tr>
+            <td>ABC
+                <table border="3" style="background-color:red;">
+                    <tr>
+                        <td>5</td>
+                        <td style="background-color:blue;">15</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</html>
+```
+
+
+#### Example 2
 ```php
 <?php
 
@@ -29,7 +103,7 @@ Table::factory()
 
 ```
 
-### Result:
+#### Result:
 ```html
 <table border="13">
     <tbody>

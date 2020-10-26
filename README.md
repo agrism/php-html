@@ -6,6 +6,20 @@
 [![Total Downloads](https://poser.pugx.org/agrism/php-html/downloads.svg)](https://packagist.org/packages/agrism/php-html)
 [![License](https://poser.pugx.org/agrism/php-html/license.svg)](https://packagist.org/packages/agrism/php-html)
 
+### Installing
+
+You can clone this git repository into your project 
+
+```
+git clone git://github.com/agrism/php-html.git
+```
+
+or you can use composer
+
+```
+composer require agrism/php-html
+```
+
 
 ### Usage:
 

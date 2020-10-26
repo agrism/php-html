@@ -50,6 +50,13 @@ $table = Element::factory('table')
 				)
 		)
 	);
+
+Element::factory('html')
+	->addContent($table)
+	->addContent($table)
+	->setEchoValue()
+	->render()
+	->doNothing();
 ```
 #### Result:
 ```html

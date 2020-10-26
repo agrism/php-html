@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Agrism\PhpHtml;
+namespace Agrism\PhpHtml\Builder;
 
 
 interface IContent

@@ -1,6 +1,9 @@
 <?php
 
-namespace Agrism\PhpHtml;
+namespace Agrism\PhpHtml\Builder;
+
+use Agrism\PhpHtml\Helpers\Helper;
+use PHPUnit\Framework\Constraint\LogicalAnd;
 
 class Element implements IContent
 {
@@ -21,6 +24,12 @@ class Element implements IContent
 
 	/*** @var bool */
 	private $echoValue = false;
+
+	/*** @var bool */
+	private $isElement = true;
+
+	/*** @var mixed */
+	private $value;
 
 	/**
 	 * Element constructor.
@@ -98,7 +107,7 @@ class Element implements IContent
 	 * @param  Attribute  $attribute
 	 * @return $this
 	 */
-	public function setAttribute(Attribute $attribute): self
+	public function addAttribute(Attribute $attribute): self
 	{
 		$this->attributes[] = $attribute;
 		return $this;
@@ -108,9 +117,9 @@ class Element implements IContent
 	 * @param  IContent  $content
 	 * @return $this
 	 */
-	public function setContent(IContent $content): self
+	public function addContent(IContent $content): self
 	{
-		$this->content[] = $content;
+		$this->content[] = unserialize(serialize($content));;
 		return $this;
 	}
 
@@ -169,24 +178,54 @@ class Element implements IContent
 		return $this;
 	}
 
+	/*** @return bool */
+	public function isElement(): bool
+	{
+		return boolval($this->tagName);
+	}
+
+	/*** @return mixed */
+	public function getValue()
+	{
+		return $this->value === null ? "" : $this->value;
+	}
+
+	/**
+	 * @param $value
+	 * @return $this
+	 */
+	public function addValue($value): self
+	{
+		$this->value[] = $value;
+
+		return $this;
+	}
+
+	public function getTagName(): string
+	{
+		return strval($this->tagName);
+	}
+
+
 	/*** @return $this */
 	public function doNothing(): self
 	{
 		return $this;
 	}
 
-	/**
-	 * @param  bool  $print
-	 * @return $this|IContent
-	 */
-	public function render(bool $print = false): IContent
+	/*** @return IContent */
+	public function render(): IContent
 	{
-		$this->startOpen()
-			->implementAttributes()
-			->endOpen()
-			->renderContent()
-			->startClose()
-			->endClose();
+		if($this->isElement()){
+			$this->startOpen()
+				->implementAttributes()
+				->endOpen()
+				->renderContent()
+				->startClose()
+				->endClose();
+		} else {
+			$this->output[] = implode('',$this->value);
+		}
 
 		if ($this->echoValue) {
 			$this->printOutput();

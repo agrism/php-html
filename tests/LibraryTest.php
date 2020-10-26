@@ -1,39 +1,88 @@
 <?php
 
-use Agrism\PhpHtml\Attribute;
-use Agrism\PhpHtml\Content;
-use Agrism\PhpHtml\Element;
+use Agrism\PhpHtml\Builder\Attribute;
+use Agrism\PhpHtml\Builder\Content;
+use Agrism\PhpHtml\Builder\Element;
 use PHPUnit\Framework\TestCase;
 
 class LibraryTest extends TestCase
 {
-	public function testAbilityToExecuteNativeMethodsFromMainObject()
+	public function testOne()
 	{
-
 		$tag = Element::factory('div');
-		$result = $tag->setAttribute(new Attribute('foo', 'bar'))
-			->setAttribute(new Attribute('name', '123'))
+		$result = $tag->addAttribute(new Attribute('foo', 'bar'))
+			->addAttribute(new Attribute('name', '123'))
 			->setSelfClosing(false)
-			->setContent(
+			->addContent(
 				Element::factory('ppp')
 					->setTagName('p')
-					->setContent(
+					->addContent(
 						Element::factory('i')
-							->setContent(
-								Content::factory()->setValue('uuuuu')
+							->addContent(
+								Element::factory()->addValue('uuuuu')
 							)
-							->setContent(
+							->addContent(
 								Element::factory('input')->setSelfClosing(1)
-									->setAttribute(Attribute::factory('type', 'text'))
-									->setAttribute(Attribute::factory('value', "12'3456789"))
-									->setAttribute(Attribute::factory('placeholder', 'phone'))
+									->addAttribute(Attribute::factory('type', 'text'))
+									->addAttribute(Attribute::factory('value', "12'3456789"))
+									->addAttribute(Attribute::factory('placeholder', 'phone'))
 							)
 					)
 			)
 			->render()
 			->getPrintableOutput();
 
-		$this->assertEquals('<div foo="bar" name="123"><p><i>uuuuu<input type="text" value="12\'3456789" placeholder="phone"/></i></p></div>', $result);
+		$this->assertEquals('<div foo="bar" name="123"><p><i>uuuuu<input type="text" value="12\'3456789" placeholder="phone"/></i></p></div>',
+			$result);
+	}
 
+	public function testInsertingTwoTimesSameContentObject()
+	{
+		$html = Element::factory('html');
+
+		$table = Element::factory('table')
+			->addAttribute(Attribute::factory('border')->setValue(1))
+			->addContent(
+				Element::factory('tr')->addContent(
+					Element::factory('td')
+						->addContent(
+							Element::factory()
+								->addValue('A')
+								->addValue('B')
+								->addValue('C')
+						)
+						->addContent(
+							Element::factory('table')
+								->addAttribute(Attribute::factory('border', 3))
+								->addAttribute(Attribute::factory('style', 'background-color:red;'))
+								->addContent(
+									Element::factory('tr')
+										->addContent(
+											Element::factory('td')
+												->addContent(
+													Element::factory()->addValue(5)
+												)
+										)
+										->addContent(
+											Element::factory('td')
+												->addAttribute(Attribute::factory('style', 'background-color:blue;'))
+												->addContent(
+													Element::factory()->addValue(15)
+												)
+										)
+								)
+						)
+				)
+			);
+
+		$html
+			->addContent($table)
+			->addContent($table)
+			->render()
+			->doNothing();
+
+		$resultShouldBe = '<html><table border="1"><tr><td>ABC<table border="3" style="background-color:red;"><tr><td>5</td><td style="background-color:blue;">15</td></tr></table></td></tr></table><table border="1"><tr><td>ABC<table border="3" style="background-color:red;"><tr><td>5</td><td style="background-color:blue;">15</td></tr></table></td></tr></table></html>';
+
+		$this->assertEquals($resultShouldBe, $html->getPrintableOutput());
 	}
 }

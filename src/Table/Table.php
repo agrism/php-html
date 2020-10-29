@@ -91,29 +91,25 @@ class Table
 	{
 		$table = Element::factory('table');
 
-		foreach ($this->attributes as $attribute){
+		foreach ($this->attributes as $attribute) {
 			$table->addAttribute($attribute);
 		}
 
+		$tableHead = Element::factory('thead');
+		$tableBody = Element::factory('tbody');
+
 		foreach ($this->rows as $row) {
-
-			$tableBlock = Element::factory();
-
 			foreach ($row->getCells() as $cell) {
-
-				if (!$tableBlock->getTagName()) {
-					if ($cell->getElement()->getTagName() === 'th') {
-						$tableBlock->setTagName('thead');
-					} else {
-						$tableBlock->setTagName('tbody');
-					}
+				if ($cell->getElement()->getTagName() === 'th') {
+					$tableHead->addContent($row->getElement());
+				} else {
+					$tableBody->addContent($row->getElement());
 				}
+				break;
 			}
-
-			$tableBlock->addContent($row->getElement());
-
-			$table->addContent($tableBlock);
 		}
+
+		$table->addContent($tableHead)->addContent($tableBody);
 
 		$table->setEchoValue()->render();
 

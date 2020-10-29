@@ -71,7 +71,7 @@ Element::factory('html')
   ->setEchoValue()
   ->render();
 ```
-#### Result:
+#### Example 1 result:
 ```html
 <html>
     <table border="1">
@@ -125,31 +125,15 @@ Table::factory()
 
 ```
 
-#### Result:
+#### Example 2 result:
 ```html
 <table border="13">
-    <tbody>
-        <tr style="background-color:yellowgreen;">
-            <td>p1</td>
-            <td>p2</td>
-            <td>p3</td>
-        </tr>
-    </tbody>
-    <tbody>
-        <tr style="background-color:yellowgreen;">
-            <td>p11</td>
-            <td>p22</td>
-            <td>p33</td>
-        </tr>
-    </tbody>
     <thead>
         <tr border="1" style="background-color:brown;">
             <th>title1</th>
             <th>title2</th>
             <th>title3</th>
         </tr>
-    </thead>
-    <thead>
         <tr border="1" style="background-color:blue;">
             <th>title11</th>
             <th>title22</th>
@@ -157,20 +141,26 @@ Table::factory()
         </tr>
     </thead>
     <tbody>
+        <tr style="background-color:yellowgreen;">
+            <td>p1</td>
+            <td>p2</td>
+            <td>p3</td>
+        </tr>
+        <tr style="background-color:yellowgreen;">
+            <td>p11</td>
+            <td>p22</td>
+            <td>p33</td>
+        </tr>
         <tr style="background-color:red;">
             <td>a</td>
             <td>b</td>
             <td>c</td>
         </tr>
-    </tbody>
-    <tbody>
         <tr style="background-color:yellow;font-size:28px;color:blue;text-align:right">
             <td>a1</td>
             <td>b1</td>
             <td>c1</td>
         </tr>
-    </tbody>
-    <tbody>
         <tr>
             <td>a2</td>
             <td>b2</td>

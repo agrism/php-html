@@ -110,6 +110,7 @@ class Table
 		return $this;
 	}
 
+	/*** @return string */
 	public function getOutput(): string
 	{
 		return $this->prepareElement()->getElement()->render()->getPrintableOutput() ?? '';

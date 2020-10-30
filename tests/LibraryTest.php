@@ -3,6 +3,7 @@
 use Agrism\PhpHtml\Builder\Attribute;
 use Agrism\PhpHtml\Builder\Content;
 use Agrism\PhpHtml\Builder\Element;
+use Agrism\PhpHtml\Table\Cell;
 use Agrism\PhpHtml\Table\Table;
 use PHPUnit\Framework\TestCase;
 
@@ -98,7 +99,8 @@ class LibraryTest extends TestCase
 			->addHead(['title1', 'title2', 'title3'], ['border' => 1, 'style' => 'background-color:brown;'])
 			->addHead(['title11', 'title22', 'title33'], ['border' => 1, 'style' => 'background-color:blue;'])
 			->addRow(['a', 'b', 'c'], ['style' => 'background-color:red;'])
-			->addRow(['a1', 'b1', 'c1'], ['style' => 'background-color:yellow;font-size:28px;color:blue;text-align:right'])
+			->addRow(['a1', 'b1', 'c1'],
+				['style' => 'background-color:yellow;font-size:28px;color:blue;text-align:right'])
 			->addRow(['a2', 'b2', 'c2'])
 			->getOutput();
 
@@ -116,11 +118,34 @@ class LibraryTest extends TestCase
 
 		$actual = Table::factory()
 			->addAttribute('border', 1)
-			->addRow([1,2,3, $nestedTable])
+			->addRow([1, 2, 3, $nestedTable])
 			->getOutput();
 
 		$expected = '<table border="1"><thead></thead><tbody><tr><td>1</td><td>2</td><td>3</td><td><table border="13"><thead></thead><tbody><tr><td>A</td><td>B</td></tr></tbody></table></td></tr></tbody></table>';
 
 		$this->assertEquals($expected, $actual);
+	}
+
+	public function testTableRenderFunctionReturnValue()
+	{
+		$this->assertInstanceOf(Table::class, Table::factory()->render());
+	}
+
+	public function testTableCellGetContent()
+	{
+		$content = Cell::factory()
+			->addContent(
+				Element::factory()
+					->addValue('AAA')
+					->addValue('BBB')
+			)->getContent();
+
+		$this->assertIsArray($content);
+
+		/** @var Element $element */
+		foreach ($content as $element){
+
+			$this->assertEquals(['AAA', 'BBB'], $element->getValue());
+		}
 	}
 }

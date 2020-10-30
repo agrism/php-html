@@ -18,6 +18,16 @@ class Table
 	/*** @var Attribute[] */
 	private $attributes = [];
 
+	/*** @var Element */
+	private $table;
+
+	/*** Table constructor.*/
+	public function __construct()
+	{
+		$this->table = $this->table = Element::factory('table');
+	}
+
+
 	/**
 	 * @param  string  $key
 	 * @param  string  $value
@@ -86,13 +96,30 @@ class Table
 		return $this;
 	}
 
+	/*** @return Element */
+	public function getElement(): Element
+	{
+		return $this->table;
+	}
+
 	/** * @return $this */
 	public function render(): self
 	{
-		$table = Element::factory('table');
+		$this->prepareElement()->getElement()->setEchoValue()->render();
 
+		return $this;
+	}
+
+	public function getOutput(): string
+	{
+		return $this->prepareElement()->getElement()->render()->getPrintableOutput() ?? '';
+	}
+
+	/*** @return $this */
+	private function prepareElement(): self
+	{
 		foreach ($this->attributes as $attribute) {
-			$table->addAttribute($attribute);
+			$this->table->addAttribute($attribute);
 		}
 
 		$tableHead = Element::factory('thead');
@@ -109,9 +136,7 @@ class Table
 			}
 		}
 
-		$table->addContent($tableHead)->addContent($tableBody);
-
-		$table->setEchoValue()->render();
+		$this->table->addContent($tableHead)->addContent($tableBody);
 
 		return $this;
 	}

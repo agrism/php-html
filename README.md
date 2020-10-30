@@ -169,3 +169,45 @@ Table::factory()
     </tbody>
 </table>
 ```
+
+#### Example 3
+```php
+<?php
+
+use Agrism\PhpHtml\Table\Table;
+
+$nestedTable = Table::factory()
+	->addAttribute('border', 13)
+	->addRow(['A', 'B'])
+	->getOutput();
+
+Table::factory()
+	->addAttribute('border', 1)
+	->addRow([1,2,3, $nestedTable])
+	->render();
+```
+
+#### Example 3 result:
+```html
+<table border="1">
+    <thead></thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>
+                <table border="13">
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <td>A</td>
+                            <td>B</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+```

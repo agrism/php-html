@@ -6,6 +6,7 @@
 [![Total Downloads](https://poser.pugx.org/agrism/php-html/downloads.svg)](https://packagist.org/packages/agrism/php-html)
 [![License](https://poser.pugx.org/agrism/php-html/license.svg)](https://packagist.org/packages/agrism/php-html)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fagrism%2Fphp-html.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fagrism%2Fphp-html?ref=badge_shield)
+[![codecov](https://codecov.io/gh/agrism/php-html/branch/master/graph/badge.svg?token=NRR5TZ70QL)](https://codecov.io/gh/agrism/php-html)
 
 ### Installing
 

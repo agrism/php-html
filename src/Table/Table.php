@@ -44,7 +44,7 @@ class Table
 	 * @param  array  $attributes
 	 * @return $this
 	 */
-	public function addHead(array $rowData, array $attributes): self
+	public function addHead(array $rowData = [], array $attributes = []): self
 	{
 		$row = Row::factory();
 
@@ -66,7 +66,7 @@ class Table
 	 * @param  array  $attributes
 	 * @return $this
 	 */
-	public function addRow(array $rowData, array $attributes = []): self
+	public function addRow(array $rowData = [], array $attributes = []): self
 	{
 		$row = Row::factory();
 
